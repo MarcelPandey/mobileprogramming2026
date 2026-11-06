@@ -1,6 +1,7 @@
 package com.learntospell.myapplication;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private OpsiAdapter adapter;
     private TextView textHasil;
     private String soal;
-    private int JUMLAH_SOAL = 10;
+    private int JUMLAH_SOAL = 3;
     private int soalke = 0;
     private ArrayList<String> opsiJawaban;
     private static final String TAG_LC = "Lifecycle";
@@ -158,7 +159,15 @@ public class MainActivity extends AppCompatActivity {
     private void selesaiSesi() {
         hentikanTimer();
         sudahDijawab = true;
-        tampilkanRingkasan();
+        Intent intent = new Intent(this, RingkasanHasil.class);
+        intent.putExtra("JUMLAH BENAR", skorBenar);
+        intent.putExtra("JUMLAH SALAH", skorSalah);
+        intent.putExtra("JUMLAH SOAL", JUMLAH_SOAL);
+        intent.putExtra("LEVEL", kodeLevel());
+        startActivity(intent);
+
+        mulaiSesiBaru();
+        //tampilkanRingkasan();
     }
 
     private void tampilkanRingkasan () {
