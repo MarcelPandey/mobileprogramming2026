@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateSkor() {
-        textSkor.setText("Soal no: " + (soalke+1) + " Benar: " + skorBenar + "  Salah: " + skorSalah);
+        textSkor.setText("Soal no: " + soalke + " Benar: " + skorBenar + "  Salah: " + skorSalah);
     }
 
     private void mulaiTimer(long durasi) {
