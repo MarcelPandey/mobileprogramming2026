@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String soal;
     private int JUMLAH_SOAL = 3;
     private int soalke = 0;
-    private ArrayList<String> opsiJawaban;
+    private ArrayList<String> opsiJawaban, listSalah;
     private static final String TAG_LC = "Lifecycle";
     private TextView textSkor;
     private int skorBenar = 0;
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         kamus = new HashMap<>();
         kata = new ArrayList<>();
+        listSalah = new ArrayList<>();
 
         kamusEasy = new HashMap<>();
         kataEasy = new ArrayList<>();
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         soalke = 0;
         skorBenar = 0;
         skorSalah = 0;
+        listSalah.clear();
         letsPlay();
     }
 
@@ -164,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("JUMLAH SALAH", skorSalah);
         intent.putExtra("JUMLAH SOAL", JUMLAH_SOAL);
         intent.putExtra("LEVEL", kodeLevel());
+        intent.putStringArrayListExtra("DAFTAR SALAH", listSalah);
         startActivity(intent);
 
         mulaiSesiBaru();
@@ -242,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             skorSalah++;
             textHasil.setText("Salah. Jawaban benar: " + benar);
+            listSalah.add(soal + ": " + benar);
         }
         updateSkor();
     }
